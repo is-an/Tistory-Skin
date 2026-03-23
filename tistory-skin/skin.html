@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[##_page_title_##] :: [##_title_##]</title>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <!-- 제이쿼리 (Tistory 내부 관리자 메뉴 스크립트 오류 방지용) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body id="[##_body_id_##]" class="dark-theme">
+    <s_t3>
+        <!-- 
+          [내비게이션 바 영역 (Navbar)]
+          화면 상단에 고정(fixed)되어 스크롤 시에도 항상 보이게 됩니다.
+          glass-nav 클래스로 반투명 블러 효과(Glassmorphism)를 줍니다.
+        -->
+        <nav class="glass-nav">
+            <div class="nav-container">
+                <a href="[##_blog_link_##]" class="logo">[##_title_##]</a>
+                <div class="nav-links" id="nav-links">
+                    <a href="/#about">About</a>
+
+                    <!-- 네비게이션 드롭다운 카테고리 (CSS 기반) -->
+                    <div class="nav-dropdown">
+                        <span class="dropdown-toggle"
+                            style="cursor:pointer; font-weight:600; font-size: 1.05rem; letter-spacing: 0.5px;">Category
+                            <i class="fas fa-chevron-down" style="font-size: 0.8em; margin-left: 3px;"></i></span>
+                        <div class="dropdown-menu glass-card category-list-container">
+                            [##_category_list_##]
+                        </div>
+                    </div>
+                    <a href="[##_taglog_link_##]">Tags</a>
+                    <a href="[##_guestbook_link_##]">Guestbook</a>
+                    <button id="theme-toggle" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+                </div>
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- 
+          [메인 대문 간판 섹션 (Hero Section)]
+          *초보자 팁: 'Hero(히어로)'는 웹디자인 용어로, 웹사이트 접속 시 화면 제일 꼭대기에 가장 크고 멋지게 뜨는 '대문'을 뜻합니다.
+          주요 인사말 텍스트나 큰 이미지를 넣어서 방문자에게 아주 강렬한 첫인상을 남기는 가장 중요한 영역입니다.
+        -->
+        <header class="hero" id="home">
+            <div class="hero-content fade-in-up">
+                <span class="badge">IT Developer & Problem Solver</span>
+                <h1 class="hero-title">Crafting <span>digital experiences</span><br>with code & AI.</h1>
+                <p class="hero-subtitle">혁신과 최적화를 추구하는 IT 개발자의 포트폴리오 블로그입니다.</p>
+                <a href="#about" class="cta-button">View My Work <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <!-- 
+              배경에 둥둥 떠다니는 장식용 물감 덩어리(Blob) 디자인 파트 
+              *초보자 팁: 'Blob(블롭)'은 슬라임이나 떨어트린 물감처럼 동글동글하면서도 딱 정해진 모서리가 없는 형태를 말합니다.
+            -->
+            <div class="hero-background">
+                <div class="blob blob-1"></div>
+                <div class="blob blob-2"></div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-container">
+
+            <!-- 
+              [소개 섹션 (About Section)]
+              자기소개와 주요 능력(기술 스택) 등을 나타내는 부분입니다. 
+              클래스에 scroll-animate를 적용하여 창을 스크롤해 내릴 때 서서히 나타나는 애니메이션을 받습니다.
+            -->
+            <section id="about" class="section scroll-animate">
+                <div class="section-title-wrap">
+                    <h2 class="section-title">About Me</h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about-card glass-card">
+                        <i class="fas fa-code card-icon"></i>
+                        <h3>Full-Stack Dev</h3>
+                        <p>웹 생태계의 프론트엔드와 백엔드를 모두 아우르는 넓은 시야로 확장성 있는 아키텍처를 설계합니다.</p>
+                    </div>
+                    <div class="about-card glass-card">
+                        <i class="fas fa-robot card-icon"></i>
+                        <h3>AI Integration</h3>
+                        <p>거대 언어 모델(Claude, GPT)의 API를 활용하여 실무에 적용 가능한 스마트 솔루션을 기획하고 개발합니다.</p>
+                    </div>
+                    <div class="about-card glass-card">
+                        <i class="fas fa-rocket card-icon"></i>
+                        <h3>Performance</h3>
+                        <p>사용자 경험을 최적화하기 위해 애니메이션 성능과 브라우저 렌더링 지연을 최소화합니다.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 카테고리 박스 메인 화면 배치에서 제거됨 (상단 네비게이션 드롭다운 메뉴로 통합) -->
+
+            <!-- 
+              [카테고리/태그/검색 결과 등 통합 리스트 (List)]
+              카테고리나 태그를 클릭했을 때 해당하는 게시물들을 렌더링해주는 역할입니다.
+              <s_list_rep> 반복문을 통해 요약된 게시물 카드들을 정상적으로 출력합니다.
+            -->
+            <s_list>
+                <section class="section scroll-animate" id="search-list">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title" style="color: var(--accent-color);">[##_list_conform_##]
+                            ([##_list_count_##])</h2>
+                        <p style="opacity: 0.8; margin-top: 1rem;">선택하신 카테고리/태그에 해당하는 게시물 목록입니다.</p>
+                    </div>
+
+                    <div class="list-container">
+                        <s_list_rep>
+                            <article class="post-card glass-card">
+                                <span class="post-category-label" style="display:inline-block; margin-bottom:1rem;"><a
+                                        href="[##_list_rep_category_link_##]">[##_list_rep_category_##]</a></span>
+                                <h2 class="post-title"><a href="[##_list_rep_link_##]">[##_list_rep_title_##]</a></h2>
+                                <span class="post-date">[##_list_rep_regdate_##]</span>
+                                <div class="post-summary" style="margin-top: 1rem;">
+                                    [##_list_rep_summary_##]
+                                </div>
+                            </article>
+                        </s_list_rep>
+                    </div>
+                </section>
+            </s_list>
+
+            <!-- 
+              [태그 클라우드 영역 (Tag Cloud)]
+              사용된 태그들이 모여 있는 페이지입니다. (/tag 페이지)
+            -->
+            <s_tag>
+                <section id="tags" class="section scroll-animate">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Tags</h2>
+                    </div>
+                    <div class="glass-card tag-cloud">
+                        <s_tag_rep>
+                            <a href="[##_tag_link_##]" class="[##_tag_class_##] tag-item">[##_tag_name_##]</a>
+                        </s_tag_rep>
+                    </div>
+                </section>
+            </s_tag>
+
+            <!-- 
+              [방명록 영역 (Guestbook)]
+              사용자가 방명록을 남길 수 있는 페이지입니다. (/guestbook 페이지)
+            -->
+            <s_guest>
+                <section id="guestbook" class="section scroll-animate">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Guestbook</h2>
+                    </div>
+                    <div class="glass-card guestbook-container">
+                        <s_guest_input_form>
+                            <div class="guest-form">
+                                <s_guest_member>
+                                    <s_guest_form>
+                                        <div class="form-row">
+                                            <input type="text" name="[##_guest_input_name_##]"
+                                                value="[##_guest_name_##]" placeholder="이름 (Name)">
+                                            <input type="password" name="[##_guest_input_password_##]"
+                                                value="[##_guest_password_##]" placeholder="비밀번호 (Password)">
+                                        </div>
+                                    </s_guest_form>
+                                </s_guest_member>
+                                <textarea name="[##_guest_textarea_body_##]" placeholder="방명록을 남겨주세요..."></textarea>
+                                <button type="button" class="cta-button" onclick="[##_guest_onclick_submit_##]">방명록
+                                    등록</button>
+                            </div>
+                        </s_guest_input_form>
+
+                        <div class="guest-list">
+                            <s_guest_container>
+                                <s_guest_rep>
+                                    <div class="guest-item" id="[##_guest_rep_id_##]">
+                                        <div class="guest-header">
+                                            <strong>[##_guest_rep_name_##]</strong>
+                                            <span>[##_guest_rep_date_##]</span>
+                                        </div>
+                                        <div class="guest-body">
+                                            [##_guest_rep_desc_##]
+                                        </div>
+                                    </div>
+                                </s_guest_rep>
+                            </s_guest_container>
+                        </div>
+                    </div>
+                </section>
+            </s_guest>
+
+            <!-- 
+              [게시글 영역 (Blog Area - Tistory Replacement)]
+              티스토리 내부 치환자(s_article_rep 등)를 사용하여 티스토리 에디터에서 작성한 글들이 
+              반복문처럼 자동으로 게시물 카드 형태로 렌더링되게 하는 핵심적인 섹션입니다.
+            -->
+            <section id="blog" class="section scroll-animate">
+                <div class="section-title-wrap" id="blog-title-wrap">
+                    <h2 class="section-title">Latest Articles</h2>
+                </div>
+                <!-- Tistory Article Block -->
+                <s_article_rep>
+                    <!-- 1. 목록(인덱스) 보기 화면에 나타나는 요약 카드 -->
+                    <s_index_article_rep>
+                        <article class="post-card glass-card">
+                            <span class="post-category-label"><a
+                                    href="[##_article_rep_category_link_##]">[##_article_rep_category_##]</a></span>
+                            <h2 class="post-title"><a href="[##_article_rep_link_##]">[##_article_rep_title_##]</a></h2>
+                            <span class="post-date">[##_article_rep_date_##]</span>
+                            <div class="post-summary">
+                                [##_article_rep_summary_##]
+                            </div>
+                        </article>
+                    </s_index_article_rep>
+
+                    <!-- 2. 게시물을 클릭했을 때 나타나는 진짜 상세 본문 화면 -->
+                    <s_permalink_article_rep>
+                        <article class="post-detail glass-card">
+                            <span class="post-category-label"><a
+                                    href="[##_article_rep_category_link_##]">[##_article_rep_category_##]</a></span>
+                            <h1 class="post-title">[##_article_rep_title_##]</h1>
+                            <span class="post-date"
+                                style="margin-bottom: 2.5rem; display: block; opacity: 0.7;">[##_article_rep_date_##]</span>
+
+                            <!-- 티스토리 에디터에서 작성한 본문 내용 전체 -->
+                            <div class="post-content">
+                                [##_article_rep_desc_##]
+                            </div>
+
+                            <!-- [댓글 영역 (Comments)] -->
+                            <s_rp>
+                                <div class="comment-section"
+                                    style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--glass-border);">
+                                    <h3 style="margin-bottom: 2rem;">Comments <span
+                                            style="color: var(--accent-color);">[##_article_rep_rp_cnt_##]</span></h3>
+
+                                    <s_rp_container>
+                                        <div class="comment-list" style="margin-bottom: 3rem;">
+                                            <s_rp_rep>
+                                                <div id="[##_rp_rep_id_##]" class="guest-item">
+                                                    <div class="guest-header">
+                                                        <strong>[##_rp_rep_name_##]</strong>
+                                                        <span>[##_rp_rep_date_##]</span>
+                                                    </div>
+                                                    <div style="font-size: 1.05rem;">[##_rp_rep_desc_##]</div>
+                                                </div>
+                                            </s_rp_rep>
+                                        </div>
+                                    </s_rp_container>
+
+                                    <!-- 댓글 작성 폼 -->
+                                    <s_rp_input_form>
+                                        <div class="guest-form">
+                                            <s_rp_member>
+                                                <s_rp_guest>
+                                                    <div class="form-row">
+                                                        <input type="text" name="[##_rp_input_name_##]"
+                                                            value="[##_guest_name_##]" placeholder="이름 (Name)">
+                                                        <input type="password" name="[##_rp_input_password_##]"
+                                                            value="[##_rp_admin_check_##]"
+                                                            placeholder="비밀번호 (Password)">
+                                                    </div>
+                                                </s_rp_guest>
+                                            </s_rp_member>
+                                            <textarea name="[##_rp_input_comment_##]" placeholder="여기에 소중한 댓글을 남겨주세요!"
+                                                rows="4"></textarea>
+                                            <button type="button" class="cta-button" onclick="[##_rp_onclick_submit_##]"
+                                                style="align-self: flex-start;">댓글 달기</button>
+                                        </div>
+                                    </s_rp_input_form>
+                                </div>
+                            </s_rp>
+
+                        </article>
+                    </s_permalink_article_rep>
+                </s_article_rep>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2024 [##_title_##]. Built with Claude AI & Antigravity.</p>
+            </div>
+        </footer>
+
+        <!-- 
+          [클로드 AI 어시스턴트 위젯 (Claude Widget)]
+          방문자가 사이트를 둘러보며 궁금증이 생겼을 때, 사이트 주인 대신 답변해주는
+          우측 하단 고정형(fixed) 인공지능 챗봇 모달 인터페이스입니다.
+        -->
+        <div id="claude-widget">
+            <div class="widget-chat-window glass-card hidden" id="chat-window">
+                <div class="chat-header">
+                    <span><i class="fas fa-robot"></i> 포트폴리오 AI 봇</span>
+                    <button id="close-chat" aria-label="Close Chat"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="chat-body" id="chat-body">
+                    <div class="message ai-message">
+                        안녕하세요! 방문해 주셔서 감사합니다. 제 기술 스택이나 경력, 프로젝트에 대해 궁금한 점이 있으신가요?
+                    </div>
+                </div>
+                <div class="chat-footer">
+                    <input type="text" id="chat-input" placeholder="여기에 질문을 입력하세요..." autocomplete="off">
+                    <button id="send-btn" aria-label="Send Message"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+            <button id="widget-toggle" class="pulse-button" aria-label="Open Chat">
+                <i class="fas fa-comment-dots"></i>
+            </button>
+        </div>
+
+        <!-- Tistory scripts will be inserted dynamically -->
+        <script src="./scripts.js"></script>
+    </s_t3>
+</body>
+
+</html>

@@ -1,0 +1,989 @@
+/* style.css */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --accent-color: #6366f1;
+    --secondary-accent: #a855f7;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --chat-bg: #f3f4f6;
+    --card-hover: rgba(99, 102, 241, 0.05);
+}
+
+.dark-theme {
+    --bg-color: #0f111a;
+    --text-color: #e2e8f0;
+    --accent-color: #818cf8;
+    --secondary-accent: #c084fc;
+    --glass-bg: rgba(15, 17, 26, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --chat-bg: #1e1e2f;
+    --card-hover: rgba(129, 140, 248, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+.logo {
+    font-family: 'Outfit', sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ==========================================
+   글래스모피즘 유틸리티 (Glassmorphism)
+   블러 처리(backdrop-filter)와 반투명 배경을 이용하여 배경이 은은하게 비치는
+   세련된 유리 느낌의 카드 및 네비게이션 UI 요소들을 정의합니다.
+   ========================================== */
+.glass-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--glass-border);
+    z-index: 1000;
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-8px);
+    background: var(--card-hover);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.2rem 2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-dropdown:hover .dropdown-toggle {
+    color: var(--accent-color);
+}
+
+/* 내비게이션 드롭다운 메뉴 (Category) */
+.nav-dropdown {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav-dropdown .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+    opacity: 0;
+    visibility: hidden;
+    min-width: 200px;
+    padding: 1.2rem;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 2000;
+    pointer-events: none;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+/* 드롭다운 내 카테고리 텍스트 사이즈 강제 축소 (Glassmorphism 메뉴용) */
+.dropdown-menu.category-list-container ul li a {
+    font-size: 1rem;
+}
+
+.dropdown-menu.category-list-container ul li ul li {
+    font-size: 0.9rem;
+}
+
+.dropdown-menu.category-list-container ul li {
+    margin-bottom: 0.5rem;
+}
+
+#theme-toggle {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s;
+}
+
+#theme-toggle:hover {
+    transform: rotate(45deg);
+    color: var(--accent-color);
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0 2rem;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    letter-spacing: 0.5px;
+}
+
+.hero-title {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1.8rem;
+    letter-spacing: -1px;
+}
+
+.hero-title span {
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.85;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.2rem 2.5rem;
+    border-radius: 50px;
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-accent));
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
+}
+
+/* ==========================================
+   배경 애니메이션 효과 (Animated Background Blobs)
+   메인 화면(Hero) 뒤쪽 시야에 필터된 흐릿하고 둥근 형태의 큰 도형(Blob)들을 배치하고,
+   float 키프레임을 통해 무한히 둥둥 떠다니는 듯한 심미적 효과를 줍니다.
+   ========================================== */
+.hero-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    filter: blur(100px);
+    opacity: 0.4;
+    border-radius: 50%;
+    animation: float 15s infinite ease-in-out alternate;
+}
+
+.blob-1 {
+    top: 5%;
+    left: -5%;
+    width: 450px;
+    height: 450px;
+    background: var(--accent-color);
+    animation-delay: 0s;
+}
+
+.blob-2 {
+    bottom: -5%;
+    right: -5%;
+    width: 550px;
+    height: 550px;
+    background: var(--secondary-accent);
+    animation-delay: -7s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(150px, 80px) scale(1.15) rotate(10deg);
+    }
+}
+
+/* Main Container & Sections */
+.main-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 5;
+}
+
+.section {
+    padding: 6rem 0;
+}
+
+.section-title-wrap {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section-title {
+    display: inline-block;
+    font-size: 2.8rem;
+    font-weight: 800;
+    position: relative;
+    letter-spacing: -0.5px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 5px;
+    background: linear-gradient(90deg, var(--accent-color), var(--secondary-accent));
+    border-radius: 5px;
+}
+
+/* About Grid */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+.about-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.card-icon {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 1.8rem;
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Blog Posts */
+.post-card {
+    margin-bottom: 2.5rem;
+    display: block;
+    text-decoration: none;
+}
+
+.post-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    transition: color 0.3s ease;
+}
+
+.post-card:hover .post-title a {
+    color: var(--accent-color);
+}
+
+.post-date {
+    font-size: 0.95rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 1.2rem;
+}
+
+.post-summary {
+    opacity: 0.85;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 서브페이지(카테고리/태그 등)에서 최신글 영역(#blog) 숨기기 (게시물 2번씩 나오는 이중 렌더링 방지) */
+#tt-body-category #blog,
+#tt-body-tag #blog,
+#tt-body-guestbook #blog,
+#tt-body-search #blog {
+    display: none !important;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 3rem;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 5rem;
+    opacity: 0.7;
+}
+
+/* Claude Widget */
+#claude-widget {
+    position: fixed;
+    bottom: 6rem;
+    right: 2.5rem;
+    z-index: 9999;
+}
+
+.pulse-button {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-accent));
+    color: white;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: pulse 2.5s infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pulse-button:hover {
+    transform: scale(1.15) rotate(10deg);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.5);
+    }
+
+    70% {
+        box-shadow: 0 0 0 20px rgba(99, 102, 241, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+    }
+}
+
+.widget-chat-window {
+    position: absolute;
+    bottom: 90px;
+    right: 0;
+    width: 380px;
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+    transform-origin: bottom right;
+    transition: opacity 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.widget-chat-window.hidden {
+    opacity: 0;
+    transform: scale(0.5);
+    pointer-events: none;
+}
+
+.chat-header {
+    background: rgba(0, 0, 0, 0.15);
+    padding: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    border-bottom: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+}
+
+#close-chat {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: color 0.2s;
+}
+
+#close-chat:hover {
+    color: #ef4444;
+}
+
+.chat-body {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    background: var(--chat-bg);
+}
+
+.message {
+    padding: 1rem 1.2rem;
+    border-radius: 16px;
+    max-width: 85%;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.ai-message {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+.user-message {
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-accent));
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+.chat-footer {
+    padding: 1.2rem;
+    display: flex;
+    gap: 0.8rem;
+    border-top: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+}
+
+#chat-input {
+    flex: 1;
+    padding: 0.8rem 1.2rem;
+    border-radius: 50px;
+    border: 1px solid var(--glass-border);
+    background: rgba(128, 128, 128, 0.1);
+    color: var(--text-color);
+    outline: none;
+    font-size: 0.95rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#chat-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+#send-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-accent));
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+}
+
+#send-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Scroll Animations */
+.fade-in-up {
+    animation: fadeInUp 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Menu Toggle button (hidden on desktop) */
+.mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.6rem;
+    cursor: pointer;
+    z-index: 1001;
+    transition: transform 0.3s ease;
+}
+
+/* ==========================================
+   반응형 브레이크포인트 (Responsive Breakpoints)
+   데스크톱, 태블릿(패드), 휴대폰 화면의 해상도에 맞춰
+   레이아웃의 너비, 폰트 크기, 네비게이션 형태 변경(햄버거 메뉴) 등을 최적화합니다.
+   ========================================== */
+
+/* Tablet & Pad (up to 1023px) */
+@media (max-width: 1023px) {
+    .hero-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .nav-links {
+        gap: 1.5rem;
+    }
+
+    .about-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+}
+
+/* Mobile (up to 767px) */
+@media (max-width: 767px) {
+    .nav-container {
+        padding: 1rem 1.5rem;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        height: 100vh;
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border-left: 1px solid var(--glass-border);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+        gap: 3rem;
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .blob-1 {
+        width: 300px;
+        height: 300px;
+        left: -20px;
+    }
+
+    .blob-2 {
+        width: 400px;
+        height: 400px;
+        right: -20px;
+    }
+
+    .section {
+        padding: 4rem 0;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .about-card {
+        padding: 1.8rem;
+    }
+
+    /* Claude Widget Mobile Fixes */
+    #claude-widget {
+        bottom: 4rem;
+        right: 1.2rem;
+    }
+
+    .pulse-button {
+        width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+    }
+
+    .widget-chat-window {
+        width: calc(100vw - 2.4rem);
+        right: 0;
+        bottom: 75px;
+        height: 60vh;
+    }
+}
+
+/* ==========================================
+   티스토리 페이지별 노출 제한 완벽 제어
+   ========================================== */
+/* 1. 서브페이지에서 메인 전용 섹션 숨김 */
+body:not(#tt-body-index) #home,
+body:not(#tt-body-index) #about,
+body:not(#tt-body-index) #category,
+body:not(#tt-body-index) #blog-title-wrap {
+    display: none !important;
+}
+
+/* 2. 서브페이지에서 메인 최신글 영역(#blog) 숨기기 (이중루프 방지) */
+#tt-body-category #blog,
+#tt-body-tag #blog,
+#tt-body-guestbook #blog,
+#tt-body-search #blog {
+    display: none !important;
+}
+
+/* 3. 메인페이지(tt-body-index)에서 서브페이지 전용 정보(리스트, 방명록) 숨김 -> 요청사항 */
+#tt-body-index #search-list,
+#tt-body-index #guestbook {
+    display: none !important;
+}
+
+/* 5. 글로벌 태그(#main-tags)는 오직 메인 페이지에서만 보이고 다른 페이지에서는 숨김 */
+body:not(#tt-body-index) #main-tags {
+    display: none !important;
+}
+
+/* 4. 본문 하단 자동 삽입 작성자 프로필/배너 투명화 (재설정) */
+div[class*="tt-profile"],
+div[class*="tt-box-author"],
+figure[data-ke-type="profile"],
+div[data-ke-type="profile"],
+.tistory-profile-container,
+.tt-box-author {
+    display: none !important;
+}
+
+/* ==========================================
+   방명록 & 댓글 스타일 (Guestbook & Comments)
+   방명록과 게시글 댓글 영역의 입력 폼과 리스트 디자인을
+   글래스모피즘 컨셉에 맞춰 더욱 세련되게 개선합니다.
+   ========================================== */
+
+/* 1. 입력 폼 공통 (Guest Form) */
+.guest-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.guest-form .form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.guest-form input[type="text"],
+.guest-form input[type="password"],
+.guest-form textarea {
+    width: 100%;
+    padding: 1.1rem 1.4rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.dark-theme .guest-form input[type="text"],
+.dark-theme .guest-form input[type="password"],
+.dark-theme .guest-form textarea {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.guest-form input:focus,
+.guest-form textarea:focus {
+    border-color: var(--accent-color);
+    background: rgba(99, 102, 241, 0.05);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
+}
+
+.guest-form textarea {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.7;
+}
+
+/* 2. 등록 버튼 (Submit Button) */
+.guest-form .cta-button {
+    align-self: flex-end;
+    padding: 0.9rem 2.2rem;
+    font-size: 1rem;
+}
+
+/* 3. 방명록/댓글 아이템 리스트 (Item List) */
+.guest-list,
+.comment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.guest-item {
+    padding: 2rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    transition: transform 0.3s ease, background 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.guest-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background: linear-gradient(to bottom, var(--accent-color), var(--secondary-accent));
+    transition: height 0.3s ease;
+}
+
+.guest-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(5px);
+}
+
+.guest-item:hover::before {
+    height: 100%;
+}
+
+.dark-theme .guest-item {
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.guest-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.guest-header strong {
+    font-size: 1.15rem;
+    font-family: 'Outfit', sans-serif;
+    color: var(--accent-color);
+}
+
+.guest-header span {
+    font-size: 0.85rem;
+    opacity: 0.5;
+    font-weight: 500;
+}
+
+.guest-body {
+    line-height: 1.8;
+    font-size: 1.05rem;
+    opacity: 0.9;
+    word-break: break-all;
+}
+
+/* 모바일 대응 */
+@media (max-width: 767px) {
+    .guest-form .form-row {
+        flex-direction: column;
+    }
+
+    .guest-item {
+        padding: 1.5rem;
+    }
+
+    .guest-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+}
+
+/* ==========================================
+   태그 클라우드 스타일 (Tag Cloud)
+   티스토리 기본 태그 출력([##_tag_cloud_##])을 세련된 디자인으로 변환합니다.
+   ========================================== */
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+}
+
+.tag-cloud a {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    font-size: 0.95rem;
+    color: var(--text-color) !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+}
+
+.dark-theme .tag-cloud a {
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text-color) !important;
+}
+
+.tag-cloud a:hover {
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-accent));
+    color: white !important;
+    border-color: transparent;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+}
+
+/* 티스토리 기본 클라우드 가중치 클래스 대응 (cloud1 ~ cloud5) */
+.tag-cloud .cloud1 {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    color: var(--text-color) !important;
+}
+
+.tag-cloud .cloud2 {
+    font-size: 1rem;
+    opacity: 0.8;
+    color: var(--text-color) !important;
+}
+
+.tag-cloud .cloud3 {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 600;
+    color: var(--text-color) !important;
+}
+
+.tag-cloud .cloud4 {
+    font-size: 1.2rem;
+    opacity: 1;
+    font-weight: 700;
+    color: var(--text-color) !important;
+}
+
+.tag-cloud .cloud5 {
+    font-size: 1.3rem;
+    opacity: 1;
+    font-weight: 800;
+    color: var(--accent-color) !important;
+}
+
+
+.tag-item {
+    /* 기존 skin.html 호환용 */
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}

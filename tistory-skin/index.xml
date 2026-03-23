@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<skin>
+  <information>
+    <name>IT Portfolio - Claude Theme</name>
+    <version>1.0</version>
+    <description>Modern IT Portfolio Theme with Claude Assistant</description>
+    <license>MIT License</license>
+  </information>
+  <author>
+    <name>Antigravity</name>
+    <homepage></homepage>
+    <email></email>
+  </author>
+  <default>
+    <!-- Basic Tistory settings -->
+    <recentEntries>5</recentEntries>
+    <recentComments>5</recentComments>
+    <recentTrackbacks>5</recentTrackbacks>
+    <itemsOnPage>10</itemsOnPage>
+    <tagsInCloud>30</tagsInCloud>
+    <sortInCloud>3</sortInCloud>
+    <expandComment>0</expandComment>
+    <expandTrackback>0</expandTrackback>
+    <lengthOfRecentNotice>30</lengthOfRecentNotice>
+    <lengthOfRecentEntry>30</lengthOfRecentEntry>
+    <lengthOfRecentComment>30</lengthOfRecentComment>
+    <lengthOfRecentTrackback>30</lengthOfRecentTrackback>
+    <lengthOfLink>30</lengthOfLink>
+    <entriesOnPage>5</entriesOnPage>
+    <entriesOnList>5</entriesOnList>
+    <showListOnCategory>2</showListOnCategory>
+    <showListLock>1</showListLock>
+  </default>
+  <config></config>
+  <variables></variables>
+</skin>

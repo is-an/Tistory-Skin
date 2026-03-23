@@ -1,0 +1,9 @@
+﻿node_modules/
+.gemini/
+.agents/
+.agent/
+_agents/
+deploy.zip
+*.exe
+*.msixbundle
+*.zip
