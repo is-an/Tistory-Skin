@@ -1,6 +1,5 @@
 # 🌈 Tistory-Skin: Modern Portfolio with Claude AI
 
-![Hero Banner](assets/images/hero.png)
 
 > **"Crafting digital experiences with code & AI."**
 >
