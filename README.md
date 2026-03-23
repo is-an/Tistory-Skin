@@ -1,5 +1,6 @@
 # 🌈 Tistory-Skin: Modern Portfolio with Claude AI
 
+<img width="2487" height="1264" alt="image" src="https://github.com/user-attachments/assets/6ed4be10-4e74-4125-ac46-6804474e8b4d" />
 
 > **"Crafting digital experiences with code & AI."**
 >
